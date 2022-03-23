@@ -1,34 +1,43 @@
 fileFormatVersion: 2
-guid: 10f3cacccb0c4c547be76836eba20664
+guid: 274d64617113287499ed1c4165d1d8f3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6447722072507503168
-    second: Idle 0
+      213: -2322180950842035098
+    second: Bronze 0
   - first:
-      213: 2962027833772318483
-    second: Idle 1
+      213: -4893972260818282012
+    second: Bronze 1
   - first:
-      213: -2453208753318357113
-    second: Run 0
+      213: -6323751108524238166
+    second: Bronze 2
   - first:
-      213: 6348790710242686107
-    second: Run 1
+      213: 2722280177590742205
+    second: Bronze 3
   - first:
-      213: 5513914976837039818
-    second: Run 2
+      213: 6582046967323461550
+    second: Silver 0
   - first:
-      213: -434675778434299504
-    second: Run 3
+      213: 1942777921290549423
+    second: Silver 1
   - first:
-      213: -5761754228987130096
-    second: Jump 0
+      213: 8793606821965667882
+    second: Silver 2
   - first:
-      213: 5907920678353447086
-    second: Jump 1
+      213: 3444832735345940322
+    second: Silver 3
   - first:
-      213: -6086044393419928071
-    second: Jump 2
+      213: -4986890610287934012
+    second: Gold 0
+  - first:
+      213: 6143208460787649835
+    second: Gold 1
+  - first:
+      213: 7609282858266732271
+    second: Gold 2
+  - first:
+      213: -6288512792030432889
+    second: Gold 3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,6 +59,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -59,11 +69,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -81,9 +91,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -134,11 +147,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle 0
+      name: Bronze 0
       rect:
         serializedVersion: 2
         x: 0
@@ -152,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0cdaeb1cfe61586a0800000000000000
-      internalID: -6447722072507503168
+      spriteID: 664b1e88ab4f5cfd0800000000000000
+      internalID: -2322180950842035098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle 1
+      name: Bronze 1
       rect:
         serializedVersion: 2
         x: 17
@@ -173,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31f91de0f9c3b1920800000000000000
-      internalID: 2962027833772318483
+      spriteID: 4e99f4d782e151cb0800000000000000
+      internalID: -4893972260818282012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run 0
+      name: Bronze 2
       rect:
         serializedVersion: 2
         x: 34
@@ -194,14 +219,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7879492f2a374fdd0800000000000000
-      internalID: -2453208753318357113
+      spriteID: aaa1e681fd58d38a0800000000000000
+      internalID: -6323751108524238166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run 1
+      name: Bronze 3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 34
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbc2264f56b77c520800000000000000
+      internalID: 2722280177590742205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Silver 0
       rect:
         serializedVersion: 2
         x: 0
@@ -215,14 +261,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b94b05d738f6b1850800000000000000
-      internalID: 6348790710242686107
+      spriteID: ea78046f7d0285b50800000000000000
+      internalID: 6582046967323461550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run 2
+      name: Silver 1
       rect:
         serializedVersion: 2
         x: 17
@@ -236,14 +282,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac6f31c157c558c40800000000000000
-      internalID: 5513914976837039818
+      spriteID: fa8bef3e93226fa10800000000000000
+      internalID: 1942777921290549423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run 3
+      name: Silver 2
       rect:
         serializedVersion: 2
         x: 34
@@ -257,14 +303,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09905f9bea8b7f9f0800000000000000
-      internalID: -434675778434299504
+      spriteID: a2e17b560da290a70800000000000000
+      internalID: 8793606821965667882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump 0
+      name: Silver 3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 17
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2679eec0f118ecf20800000000000000
+      internalID: 3444832735345940322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold 0
       rect:
         serializedVersion: 2
         x: 0
@@ -278,14 +345,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01f0e1a4e032a00b0800000000000000
-      internalID: -5761754228987130096
+      spriteID: 4c58e0069610bcab0800000000000000
+      internalID: -4986890610287934012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump 1
+      name: Gold 1
       rect:
         serializedVersion: 2
         x: 17
@@ -299,14 +366,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea821723e862df150800000000000000
-      internalID: 5907920678353447086
+      spriteID: b2d0c660c8f014550800000000000000
+      internalID: 6143208460787649835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump 2
+      name: Gold 2
       rect:
         serializedVersion: 2
         x: 34
@@ -320,8 +387,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fd82f29ed60a8ba0800000000000000
-      internalID: -6086044393419928071
+      spriteID: fe62572a17a999960800000000000000
+      internalID: 7609282858266732271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold 3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 781b6810fe6bab8a0800000000000000
+      internalID: -6288512792030432889
       vertices: []
       indices: 
       edges: []
@@ -329,7 +417,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 7e6a3458aea67d6468fc14ee8c46abba
     internalID: 0
     vertices: []
     indices: 
