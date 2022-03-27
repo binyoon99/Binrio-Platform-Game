@@ -12,7 +12,16 @@ public class PlayerMovement : MonoBehaviour
     //This is the speed limit
     public float maxSpeed; // 4.5 is good max speed
     public float maxJump; // 10 is good / but gravity should be 4
+
     public GameManager gameManager;
+    public AudioClip audioJump;
+    public AudioClip audioAttack;
+    public AudioClip audioDamaged;
+    public AudioClip audioCoin;
+    public AudioClip audioDie;
+    public AudioClip audioFinish;
+
+    AudioSource audioSource;
 
     void Awake()
     {
@@ -20,8 +29,34 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animatr = GetComponent<Animator>();
         collir = GetComponent<CapsuleCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
+    void playSound(string action)
+    {
+        switch (action)
+        {
+            case "JUMP":
+                audioSource.clip = audioJump;
+                break;
+            case "ATTACK":
+                audioSource.clip = audioAttack;
+                break;
+            case "DAMAGED":
+                audioSource.clip = audioDamaged;
+                break;
+            case "COIN":
+                audioSource.clip = audioCoin;
+                break;
+            case "DIE":
+                audioSource.clip = audioDie;
+                break;
+            case "FINISH":
+                audioSource.clip = audioFinish;
+                break;
 
+        }
+        audioSource.Play();
+    }
     // Update Frame
     // normalized = makes vector size 1. For example, right movement = 1, left movement = -1
     void Update()
@@ -32,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rigid.AddForce(Vector2.up * maxJump, ForceMode2D.Impulse);
             animatr.SetBool("isJumping", true);
+            playSound("JUMP");
         }
 
         // Prevent slipping like ice. This will stop the speed once key press is releashed
@@ -111,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Coin")
         {
+            playSound("COIN");
             //gains point
             bool isBronze = collision.gameObject.name.Contains("Bronze");
             bool isSilver = collision.gameObject.name.Contains("Silver");
@@ -125,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 gameManager.stagePoint += 300;
             }
-       
+            
             // deactive coin
             collision.gameObject.SetActive(false);
 
@@ -134,6 +171,7 @@ public class PlayerMovement : MonoBehaviour
         }else if (collision.gameObject.tag == "Finish")
         {
             //stage is finished ~~ next stage plz
+            playSound("FINISH");
             gameManager.NextStage();
 
         }
@@ -152,15 +190,19 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("Attacking mob");
                 attacking(collision.transform);
-            }else
+                playSound("ATTACK");
+            }
+            else
             {
                 Debug.Log("You got hit by mob");
+                playSound("DAMAGED");
                 onDamaged(collision.transform.position);
             }
             
         }else if (collision.gameObject.tag == "Spike")
         {
             Debug.Log("You got hit by spike");
+            playSound("DAMAGED");
             onDamaged(collision.transform.position);
         }
         
@@ -221,6 +263,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void onDie()
     {
+        playSound("DIE");
 
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
 
@@ -232,5 +275,10 @@ public class PlayerMovement : MonoBehaviour
 
         // mob also jump before it dies
         rigid.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+    }
+
+    public void VelocityZero()
+    {
+        rigid.velocity = Vector2.zero;
     }
 }
