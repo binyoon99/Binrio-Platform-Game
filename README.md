@@ -1,7 +1,7 @@
 # Binrio-Platform-Game
  2D Pixel Mario Style Platform Game
  
- If you wish to play the game, download " Binrio-Build.zip"
+ ### If you wish to play the game, download " Binrio-Build.zip"
  
  
  
