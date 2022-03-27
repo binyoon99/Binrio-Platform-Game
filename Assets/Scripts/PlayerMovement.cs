@@ -7,16 +7,19 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator animatr;
+    CapsuleCollider2D collir;
 
     //This is the speed limit
     public float maxSpeed; // 4.5 is good max speed
-    public float maxJump; // 10 is good / but gravity should be 4 
+    public float maxJump; // 10 is good / but gravity should be 4
+    public GameManager gameManager;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animatr = GetComponent<Animator>();
+        collir = GetComponent<CapsuleCollider2D>();
     }
 
     // Update Frame
@@ -38,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Direction: flips the character by detecting the key pressed
-        if (Input.GetButtonDown("Horizontal"))
+        if (Input.GetButton("Horizontal"))
         {
             //Flip on horizontal if key is pressed to left. 
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
@@ -61,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Plater Movement by Arrow key
         float h = Input.GetAxisRaw("Horizontal");
-        rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+        rigid.AddForce(Vector2.right * h*2, ForceMode2D.Impulse);
         if (rigid.velocity.x> maxSpeed) //  Right Max Speed
         {
             rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y );
@@ -101,5 +104,133 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    //Coins
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Coin")
+        {
+            //gains point
+            bool isBronze = collision.gameObject.name.Contains("Bronze");
+            bool isSilver = collision.gameObject.name.Contains("Silver");
+            bool isGold = collision.gameObject.name.Contains("Gold");
+            if (isBronze)
+            {
+                gameManager.stagePoint += 50;
+            }else if (isSilver)
+            {
+                gameManager.stagePoint += 100;
+            }else if (isGold)
+            {
+                gameManager.stagePoint += 300;
+            }
+       
+            // deactive coin
+            collision.gameObject.SetActive(false);
+
+            
+
+        }else if (collision.gameObject.tag == "Finish")
+        {
+            //stage is finished ~~ next stage plz
+            gameManager.NextStage();
+
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            // If Player is on top of mob + force is going down (he is falling)
+            // then player is killing mob like mario
+            // rigid.velocity.y < 0  = player is falling
+
+            //transform.position.y> collision.transform.position.y= player is on top of mob
+            if (rigid.velocity.y < 0 && transform.position.y> collision.transform.position.y)
+            {
+                Debug.Log("Attacking mob");
+                attacking(collision.transform);
+            }else
+            {
+                Debug.Log("You got hit by mob");
+                onDamaged(collision.transform.position);
+            }
+            
+        }else if (collision.gameObject.tag == "Spike")
+        {
+            Debug.Log("You got hit by spike");
+            onDamaged(collision.transform.position);
+        }
         
+    }
+
+    void onDamaged(Vector2 enemyPos)
+    {
+
+        // health --
+        gameManager.healthLost();
+
+        //layer11 = playerDamaged
+        gameObject.layer = 11;
+
+        //If damaged player become transparent for 1sec
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+
+        //If damaged, player is pushed back
+        int pushedBack = transform.position.x - enemyPos.x > 0 ? 1 : -1;
+        //if (transform.position.x - enemyPos.x > 0)
+        //{
+        //    pushedBack = 1;
+        //}else { pushedBack = -1; }
+
+        rigid.AddForce(new Vector2(pushedBack, 1)*10, ForceMode2D.Impulse);
+
+        //wait 2second and player is off from being invincible 
+        Invoke("offDamaged", 2);
+
+        // Get hit damage animation,
+        animatr.SetTrigger("isDamaged");
+    }
+
+    void offDamaged()
+    {
+        //layer10 = plyaer
+        gameObject.layer = 10;
+
+        //No longer transparent
+        spriteRenderer.color = new Color(1, 1, 1, 1);
+    }
+
+    void attacking(Transform enemyTrans)
+
+    {
+
+        //points
+        gameManager.stagePoint += 100;
+
+        //pushedback
+
+        rigid.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+
+        //mob dies
+        EnemyMove enemyMove = enemyTrans.GetComponent<EnemyMove>();
+        enemyMove.onDamaged();
+    }
+
+    public void onDie()
+    {
+
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+
+        //flips y
+        spriteRenderer.flipY = true;
+
+        //disable collider so mob falls down
+        collir.enabled = false;
+
+        // mob also jump before it dies
+        rigid.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+    }
 }
